@@ -2,7 +2,7 @@
 
 namespace demo.THR.Dominio.Entities.Enuns
 {
-    public enum UF
+    public enum Uf
     {
         [Display(Name = "Acre")]
         AC,

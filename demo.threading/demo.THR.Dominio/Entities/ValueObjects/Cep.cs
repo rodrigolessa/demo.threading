@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using demo.THR.Infraestrutura.Comuns;
+using demo.THR.Infraestrutura.Comuns.Helpers;
 
 namespace demo.THR.Dominio.Entities.ValueObjects
 {
@@ -13,9 +14,9 @@ namespace demo.THR.Dominio.Entities.ValueObjects
 
         public Cep(string cep)
         {
-            Guard.ForNullOrEmptyDefaultMessage("CEP", cep);
-            cep = TextoHelper.GetNumeros(cep);
-            Guard.StringLength("CEP", CepMaxLength, cep);
+            ValidationHelper.ForNullOrEmptyDefaultMessage("CEP", cep);
+            cep = TextHelper.GetNumeros(cep);
+            ValidationHelper.StringLength("CEP", CepMaxLength, cep);
             try
             {
                 CepCod = Convert.ToInt64(cep);

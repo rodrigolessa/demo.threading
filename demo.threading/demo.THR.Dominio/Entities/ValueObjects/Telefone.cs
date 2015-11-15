@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using demo.THR.Infraestrutura.Comuns;
+using demo.THR.Infraestrutura.Comuns.Helpers;
 
 namespace demo.THR.Dominio.Entities.ValueObjects
 {
@@ -12,10 +13,8 @@ namespace demo.THR.Dominio.Entities.ValueObjects
         public const int DDDMaxLength = 3;
         public string DDD { get; private set; }
 
-        protected Telefone()
-        {
-
-        }
+        // Contrutor para o entityFramework
+        protected Telefone() { }
 
         public Telefone(string ddd, string numero)
         {
@@ -28,7 +27,8 @@ namespace demo.THR.Dominio.Entities.ValueObjects
             if (string.IsNullOrEmpty(numero))
                 numero = "";
             else
-                Guard.StringLength("Telefone", numero, NumeroMaxLength);
+                ValidationHelper.StringLength("Telefone", numero, NumeroMaxLength);
+
             Numero = numero;
         }
 
@@ -37,10 +37,11 @@ namespace demo.THR.Dominio.Entities.ValueObjects
             if (string.IsNullOrEmpty(ddd))
                 ddd = "";
             else
-                Guard.StringLength("DDD", ddd, DDDMaxLength);
+                ValidationHelper.StringLength("DDD", ddd, DDDMaxLength);
+
             DDD = ddd;
         }
-        
+
         public string GetTelefoneCompleto()
         {
             return DDD + Numero;

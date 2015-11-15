@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using demo.THR.Infraestrutura.Comuns;
+using demo.THR.Infraestrutura.Comuns.Helpers;
 
 namespace demo.THR.Dominio.Entities.ValueObjects
 {
@@ -31,10 +32,10 @@ namespace demo.THR.Dominio.Entities.ValueObjects
         {
             return Codigo.ToString();
         }
-        
+
         public static string CpfLimpo(string cpf)
         {
-            cpf = TextoHelper.GetNumeros(cpf);
+            cpf = TextHelper.GetNumeros(cpf);
 
             if (string.IsNullOrEmpty(cpf))
                 return "";
@@ -45,7 +46,6 @@ namespace demo.THR.Dominio.Entities.ValueObjects
             return cpf;
         }
 
-        
         public string GetCpfCompleto()
         {
             var cpf = Codigo.ToString();
@@ -58,7 +58,7 @@ namespace demo.THR.Dominio.Entities.ValueObjects
 
             return cpf;
         }
-        
+
         public static bool IsCpf(string cpf)
         {
             while (cpf.Length < 11)

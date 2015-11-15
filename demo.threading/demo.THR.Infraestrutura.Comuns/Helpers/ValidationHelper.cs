@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace demo.THR.Infraestrutura.Comuns
+namespace demo.THR.Infraestrutura.Comuns.Helpers
 {
-    public class Guard
+    public class ValidationHelper
     {
         public static void ForValidId(string propName, Guid id)
         {

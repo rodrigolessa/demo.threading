@@ -1,5 +1,6 @@
 ﻿using System;
 using demo.THR.Infraestrutura.Comuns;
+using demo.THR.Infraestrutura.Comuns.Helpers;
 using demo.THR.Dominio.Entities.Enuns;
 
 namespace demo.THR.Dominio.Entities.ValueObjects
@@ -27,8 +28,7 @@ namespace demo.THR.Dominio.Entities.ValueObjects
 
         protected Endereco() { }
 
-        public Endereco(string logradouro, string complemento, string numero, string bairro,
-            string cidade, Uf? uf, Cep cep)
+        public Endereco(string logradouro, string complemento, string numero, string bairro, string cidade, Uf? uf, Cep cep)
         {
             SetCep(cep);
             SetBairro(bairro);
@@ -50,36 +50,36 @@ namespace demo.THR.Dominio.Entities.ValueObjects
         {
             if (string.IsNullOrEmpty(complemento))
                 complemento = "";
-            Complemento = TextoHelper.ToTitleCase(complemento);
+            Complemento = TextHelper.ToTitleCase(complemento);
         }
 
         public void SetLogradouro(string logradouro)
         {
-            Guard.ForNullOrEmptyDefaultMessage(logradouro, "Endereço");
-            Logradouro = TextoHelper.ToTitleCase(logradouro);
+            ValidationHelper.ForNullOrEmptyDefaultMessage(logradouro, "Endereço");
+            Logradouro = TextHelper.ToTitleCase(logradouro);
         }
 
         public void SetNumero(string numero)
         {
-            Guard.ForNullOrEmptyDefaultMessage(numero, "Número");
+            ValidationHelper.ForNullOrEmptyDefaultMessage(numero, "Número");
             Numero = numero;
         }
 
         public void SetBairro(string bairro)
         {
-            Guard.ForNullOrEmptyDefaultMessage(bairro, "Bairro");
-            Bairro = TextoHelper.ToTitleCase(bairro);
+            ValidationHelper.ForNullOrEmptyDefaultMessage(bairro, "Bairro");
+            Bairro = TextHelper.ToTitleCase(bairro);
         }
 
         public void SetCidade(string cidade)
         {
-            Guard.ForNullOrEmptyDefaultMessage(cidade, "Cidade");
-            Cidade = TextoHelper.ToTitleCase(cidade);
+            ValidationHelper.ForNullOrEmptyDefaultMessage(cidade, "Cidade");
+            Cidade = TextHelper.ToTitleCase(cidade);
         }
 
         public void SetUf(Uf? uf)
         {
-            if(!uf.HasValue)
+            if (!uf.HasValue)
                 throw new Exception("Estado é obrigatório");
             Uf = uf;
         }

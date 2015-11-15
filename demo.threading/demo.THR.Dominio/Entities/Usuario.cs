@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using demo.THR.Dominio.Entities.ValueObjects;
 using demo.THR.Infraestrutura.Comuns;
+using demo.THR.Infraestrutura.Comuns.Helpers;
 
 namespace demo.THR.Dominio.Entities
 {
@@ -23,20 +25,20 @@ namespace demo.THR.Dominio.Entities
         // Para o EntityFramework
         protected Usuario() { }
 
-        public Usuario(string login, string senha, string confirmacaoDeSenha, Cpf cpf, Email email)
+        public Usuario(string login, string senha, string confirmacaoDeSenha, Cpf cpf, Email email, Endereco endereco)
         {
             SetLogin(login);
             SetCpf(cpf);
             SetEmail(email);
-            SetSenha(senha, senhaConfirmacao);
+            SetSenha(senha, confirmacaoDeSenha);
             Endereco = endereco;
-            DtInclusao = DateTime.Now;
+            DataDeInclusao = DateTime.Now;
         }
 
         public void SetLogin(string login)
         {
-            Guard.ForNullOrEmptyDefaultMessage(login, "Login");
-            Guard.StringLength("Login", login, LoginMinLength, LoginMaxLength);
+            ValidationHelper.ForNullOrEmptyDefaultMessage(login, "Login");
+            ValidationHelper.StringLength("Login", login, LoginMinLength, LoginMaxLength);
             Login = login;
         }
 
@@ -51,17 +53,17 @@ namespace demo.THR.Dominio.Entities
         {
             if (email == null)
                 throw new Exception("E-mail é obrigatório.");
-                Email = email;
+            Email = email;
         }
 
         private void SetSenha(string senha, string senhaConfirmacao)
         {
-            Guard.ForNullOrEmptyDefaultMessage(senha, "Senha");
-            Guard.ForNullOrEmptyDefaultMessage(senhaConfirmacao, "Confirmação de Senha");
-            Guard.StringLength("Senha", senha, SenhaMinLength, SenhaMaxLength);
-            Guard.AreEqual(senha, senhaConfirmacao, "As senhas não conferem!");
-            
-            Senha = CriptografiaHelper.CriptografarSenha(senha);
+            ValidationHelper.ForNullOrEmptyDefaultMessage(senha, "Senha");
+            ValidationHelper.ForNullOrEmptyDefaultMessage(senhaConfirmacao, "Confirmação de Senha");
+            ValidationHelper.StringLength("Senha", senha, SenhaMinLength, SenhaMaxLength);
+            ValidationHelper.AreEqual(senha, senhaConfirmacao, "As senhas não conferem!");
+
+            Senha = CryptoHelper.CriptografarSenha(senha);
         }
 
         public void AlterarSenha(string senhaAtual, string novaSenha, string confirmacaoDeSenha)
@@ -72,8 +74,8 @@ namespace demo.THR.Dominio.Entities
 
         public void ValidarSenha(string senha)
         {
-            Guard.ForNullOrEmptyDefaultMessage(senha, "Senha");
-            var senhaCriptografada = CriptografiaHelper.CriptografarSenha(senha);
+            ValidationHelper.ForNullOrEmptyDefaultMessage(senha, "Senha");
+            var senhaCriptografada = CryptoHelper.CriptografarSenha(senha);
             if (!Senha.SequenceEqual(senhaCriptografada))
                 throw new Exception("Senha inválida!");
         }

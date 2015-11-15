@@ -32,7 +32,7 @@ namespace demo.THR.Dominio.Testes.Entities.ValueObject
         public void Email_NovoEmail_ErroTamanhoMaximo()
         {
             var endereco = "rodrigolsr@gmail.com";
-            while (endereco.Length < Email.TamanhoMaximo + 1)
+            while (endereco.Length < Email.EnderecoMaxLength + 1)
             {
                 endereco += "rodrigolsr@gmail.com";
             }
