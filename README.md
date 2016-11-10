@@ -6,6 +6,7 @@ Este projeto com estrutura baseada em DDD, foi criado usando as seguintes tecnol
 - SQL Server 2008 R2
 - EntityFramework 6.1.3 (habilitando Migrations)
 - Todas as classes de Entidades criadas usando os princípios do DDD
+- Propriedades criadas como ValueObjects
 - TDD (Iniciando projeto por testes unitários "UnitTest" com Moq)
 - Injeção de Dependência (DI) e Inversão de Controle (IOC) com StructureMap
 - Ajax (com JQuery)
