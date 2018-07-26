@@ -22,13 +22,18 @@ https://www.linkedin.com/learning/async-programming-in-c-sharp
 This project also has ValueObjects examples !
 
 Este projeto com estrutura baseada em DDD, foi criado usando as seguintes tecnologias e padrões:
+- Builder Pattern
+- Repository Pattern
+- Unit of Work Pattern
+- Adapter Pattern
+- Facade Pattern
 - Visual Studio (MVC scaffolding)
-- SQL Server
-- EntityFramework (habilitando Migrations)
 - Todas as classes de Entidades criadas usando os princípios do DDD
 - Propriedades criadas como ValueObjects
 - TDD (Iniciando projeto por testes unitários "UnitTest" com Moq)
 - Injeção de Dependência (DI) e Inversão de Controle (IOC) com StructureMap
+- SQL Server
+- EntityFramework (habilitando Migrations)
 - Ajax (com JQuery)
 - KnockoutJs
 - Bootstrap
