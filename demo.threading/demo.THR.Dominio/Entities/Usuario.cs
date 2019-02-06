@@ -25,6 +25,7 @@ namespace demo.THR.Dominio.Entities
         // Para o EntityFramework
         protected Usuario() { }
 
+        // Classe construida utilizando Design Patterns - Builder
         public Usuario(string login, string senha, string confirmacaoDeSenha, Cpf cpf, Email email, Endereco endereco)
         {
             SetLogin(login);
