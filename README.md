@@ -27,6 +27,7 @@ Este projeto com estrutura baseada em DDD, foi criado usando as seguintes tecnol
 - Unit of Work Pattern
 - Adapter Pattern
 - Facade Pattern
+- TODO: Notification Pattern (https://martinfowler.com/eaaDev/Notification.html)
 - Visual Studio (MVC scaffolding)
 - Todas as classes de Entidades criadas usando os princípios do DDD
 - Propriedades criadas como ValueObjects
