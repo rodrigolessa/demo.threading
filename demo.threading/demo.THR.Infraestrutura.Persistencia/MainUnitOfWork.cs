@@ -15,6 +15,7 @@ namespace demo.THR.Infraestrutura.Persistencia
         public MainUnitOfWork()
             : base("MainUnitOfWork")
         {
+            // Sem o Lazy Loading, todos os relacionamentos das entidades são carregados automaticamente
             Configuration.LazyLoadingEnabled = false;
         }
 
