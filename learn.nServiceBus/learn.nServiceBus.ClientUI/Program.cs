@@ -19,12 +19,13 @@ namespace learn.nServiceBus.ClientUI
 
         private static async Task AsyncMain()
         {
+            // When running multiple console apps in the same solution, giving each a name makes them easier to identify.
             Console.Title = "ClientUI";
 
             // The EndpointConfiguration class is where we define all the settings that determine how our endpoint will operate. The single string parameter ClientUI is the endpoint name, which serves as the logical identity for our endpoint, and forms a naming convention by which other things will derive their names, such as the input queue where the endpoint will listen for messages to process.
-            var endpointConfiguration = new EndpointConfiguration("ClientUI");
+            var endpointConfiguration = new EndpointConfiguration("ClientUI"); // ClientUI is the logical identity
 
-            // This setting defines the transport that NServiceBus will use to send and receive messages. We are using the LearningTransport, which is bundled in the NServiceBus core library as a starter transport for learning how to use NServiceBus without any additional dependencies. All other transports are provided using different NuGet packages.
+            // This setting defines the transport that NServiceBus will use to send and receive messages. We are using the "LearningTransport", which is bundled in the NServiceBus core library as a starter transport for learning how to use NServiceBus without any additional dependencies. All other transports are provided using different NuGet packages.
             var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
             // Provides support for sending messages over RabbitMQ using the RabbitMQ .NET Client.
@@ -33,7 +34,6 @@ namespace learn.nServiceBus.ClientUI
             // The RabbitMQ transport requires a connection string to connect to the broker. See connection settings for options on how to provide the connection string.
 
             // Start the endpoint, keep it running until we press the Enter key, then shut it down.
-
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
 
@@ -42,6 +42,11 @@ namespace learn.nServiceBus.ClientUI
 
             await endpointInstance.Stop()
                 .ConfigureAwait(false);
+        }
+
+        public class DoSomething : ICommand
+        {
+
         }
     }
 }
